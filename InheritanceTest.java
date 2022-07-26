@@ -28,8 +28,8 @@ class City
 		return "City [cityArea=" + cityArea + ", cityName=" + cityName + "]";
 	}
 	
-	void print() {
-		System.out.println());
+	void printCity() {
+		System.out.println("City name is: "+cityName +" It has an area of "+cityArea);
 	}
 	
 	
