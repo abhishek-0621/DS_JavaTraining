@@ -51,7 +51,7 @@ class Flat extends Society
 		this.floor = floor;
 	}
 
-	Furniture createRoom(int roomSize, Washroom w, Bed b) 
+	public Furniture createRoom(int roomSize, Washroom w, Bed b) 
 	{
 		Furniture f1=new Furniture(true, true, "Smart");
 		System.out.println("Flat no. is "+flatNo +" having area "+flatArea);
