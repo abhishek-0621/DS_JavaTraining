@@ -7,12 +7,10 @@ import java.util.Scanner;
 import ExceptionHandlingJDBC.StudentNotFoundException;
 
 public class StudentSelect {
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
 			DriverManager.registerDriver(new org.hsqldb.jdbc.JDBCDriver());
-			
 			Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb");
 			
 			Statement statement = conn.createStatement();

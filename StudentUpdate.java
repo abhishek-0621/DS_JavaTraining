@@ -7,24 +7,19 @@ import java.sql.Statement;
 import java.util.Scanner;
 import ExceptionHandlingJDBC.StudentNotFoundException;
 
-
 public class StudentUpdate {
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
 			DriverManager.registerDriver(new org.hsqldb.jdbc.JDBCDriver());
 			Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb", "SA", "");
-			
 			PreparedStatement pst = conn.prepareStatement("update studentdb set MATHS = ? where rollno=? ");
-			
 			Statement st = conn.createStatement();
 			Scanner sc = new Scanner(System.in);
 			
 			System.out.println("Enter the roll No to update");
 			int rno = sc.nextInt();
 			ResultSet rs = st.executeQuery("select * from studentdb where rollno = "+rno);
-			
 			
 			if(rs.next())
 			{
@@ -60,8 +55,6 @@ public class StudentUpdate {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
-
 }

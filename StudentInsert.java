@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-
 import ExceptionHandlingJDBC.StudentAlreadyExists;
 
 class StudentInsert{
@@ -34,8 +33,6 @@ class StudentInsert{
 	            System.out.println("Enter Date of birth of the Student");
 	            String dob = sc.next();
 				Date date = Date.valueOf(dob);
-
-	              
 	            System.out.println("Enter Physics Marks");
 	            int phy = sc.nextInt();
 	              
@@ -65,7 +62,7 @@ class StudentInsert{
 	            }else {
 	            	grade ="F";
 	            } 
-	        
+
 	            pstmt.setInt(1,rno);
 	            pstmt.setString(2,sname);
 	            pstmt.setString(3,dob);
@@ -73,8 +70,7 @@ class StudentInsert{
 	            pstmt.setInt(5,chem);
 	            pstmt.setInt(6,maths);
 	            pstmt.setInt(7,total);
-	            pstmt.setString(8,grade);
-	                
+	            pstmt.setString(8,grade);  
 	            Statement stmt = conn.createStatement();
 	            ResultSet rs = stmt.executeQuery("select * from studentdb where rollno ="+rno);
 	            if(rs.next())
@@ -99,7 +95,6 @@ class StudentInsert{
 	                        System.out.println("Trying to execute the prepared statement....");
 	                      
 	                   }
-
 	              	}
 	          }catch (SQLException e) {
 	  			// TODO Auto-generated catch block
