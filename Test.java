@@ -1,85 +1,44 @@
+import java.sql.*;
 
 public class Test {
-	public static void main(String[] args) {
-		
-		Flower f = Garden.getFlower("hug");
-		Fragrance fra = f.flowering();
-		Perfume per = fra.aroma();
-		
-		per.enjoy();
-	}
-}
 
-class Garden
-{
-	public static Flower getFlower(String hint) {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
 		
-		Flower flower  = null;
-		
-		if(hint.equals("valentine")) {
-			flower = new Rose();
-		}
-		else if (hint.equals("hug")) {
-			flower = new Lily();
-		}
-		
-		return flower;
-	}
-}
-interface Flower
-{
-	Fragrance flowering();
-}
-class Rose implements Flower
-{
-	public Fragrance flowering() {
-		System.out.println("Rose is flowering....");
-		Fragrance f = new RoseFragrance();
-		return f;
-	}
-}
-class Lily implements Flower
-{
-	public Fragrance flowering() {
-		System.out.println("Lily is flowering....");
-		Fragrance f = new LilyFragrance();
-		return f;
-	}
-}
-/*-----------------------*/
-interface Fragrance
-{
-	Perfume aroma();
-}
-class RoseFragrance implements Fragrance
-{
-	public Perfume aroma() {
-		Perfume p = new RosePerfume();
-		return p;
-	}
-}
-class LilyFragrance implements Fragrance
-{
-	public Perfume aroma() {
-		Perfume p = new LilyPerfume();
-		return p;
-	}
-}
-/*-----------------------*/
-interface Perfume
-{
-	void enjoy();
-}
-class RosePerfume implements Perfume
-{
-	public void enjoy() {
-		System.out.println("Enjoy the Rose Perfume....");
-	}
-}
-class LilyPerfume implements Perfume
-{
-	public void enjoy() {
-		System.out.println("Enjoy the Lily Perfume....");
-	}
-}
-/*-----------------------*/
+				Connection connection = null;
+				try {
+					// below two lines are used for connectivity.
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					connection = DriverManager.getConnection(
+						"jdbc:mysql://localhost:3306/mysql",
+						"root", "Basketball21!06");
+
+					// mydb is database
+					// mydbuser is name of database
+					// mydbuser is password of database
+
+					Statement statement;
+					statement = connection.createStatement();
+					ResultSet resultSet;
+					resultSet = statement.executeQuery(
+						"select * from books");
+					int code;
+					String title;
+					while (resultSet.next()) {
+						code = resultSet.getInt("book_id");
+						title = resultSet.getString("bookname");
+						System.out.println("Book id : " + code
+										+ " Title : " + title);
+					}
+					resultSet.close();
+					statement.close();
+					connection.close();
+				}
+				catch (Exception exception) {
+					System.out.println(exception);
+				}
+			} // function ends
+	} // class ends
+
+
